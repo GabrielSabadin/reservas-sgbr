@@ -98,6 +98,10 @@ class AuthController extends Controller
         ]
     );
 
+        $existe = User::where('email', $request->text_username);
+        if($exsite) {
+            return redirect()->back()->withInput()->with('emailError', 'Email já cadastrado');
+        }
 
         $usuario = new User();
         $usuario->name = $request->text_username; 
